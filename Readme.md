@@ -7,3 +7,4 @@
 ## use http://localhost:8080//capitalize/{word} to go to the capitalize page and in the word you can enter any word you want
 
 ## for the test I tested the album array and model
+
