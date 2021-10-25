@@ -1,5 +1,8 @@
-package com.example.songr;
+package com.example.songr.controller;
 
+import com.example.songr.model.AlbumModel;
+import com.example.songr.respository.AlbumRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,8 @@ import java.util.ArrayList;
 
 @Controller
 public class AlbumController {
+@Autowired
+    AlbumRepository albumRepository;
 @GetMapping("/albums")
 public String albums(Model model){
     AlbumModel album1=new AlbumModel("album1","Adel",1,1,"https://upload.wikimedia.org/wikipedia/en/1/1b/Adele_-_21.png");
@@ -16,7 +21,7 @@ public String albums(Model model){
     album.add(album1);
     album.add(album2);
     album.add(album3);
-model.addAttribute("albums",album);
+model.addAttribute("albums",albumRepository.findAll());
     return "album.html";
 }
 }
