@@ -6,6 +6,43 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        img {
+            border-radius: 8px;
+            width: 100%;
+            height: 500px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            display: inline-block;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+        *{
+            background-color: wheat;
+            color: red;
+            font-family: Arial;
+            font-size: larger;
+            margin: 10px;
+            text-align: center;
+        }
+        #fieldset{
+            font-size: initial;
+            background: wheat;
+            text-align: left;
+        }
+        label{
+            background: wheat;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -21,14 +58,42 @@
         <title>Title</title>
     </head>
     <body>
-    <tr th:each="album: ${albums}">
-        <td th:text="${album.title}" />
-        <td th:text="${album.artist}" />
-        <td th:text="${album.songCount}" />
-        <td th:text="${album.length}" />
-        <img th:src="${album.imageUrl}" />
+    <section>
+        <form th:action="@{/addAlbum}" th:object="${album}" method="post">
+            <label>Add Album </label>
+            <fieldset id="fieldset">
+                <label>Title </label>
+                <input type="text" field="*{title}" name="title" />
+                <br><br>
+                <label>Artist </label>
+                <input type="text" field="*{artist}" name="artist" />
+                <br><br>
+                <label>Song Count </label>
+                <input type="songCount" field="*{songCount}" name="songCount" />
+                <br><br>
+                <label>Length </label>
+                <input type="length" field="*{length}" name="length" />
+                <br><br>
+                <label>imageUrl </label>
+                <input type="imageUrl" field="*{imageUrl}" name="imageUrl" />
+                <br><br>
+                <input type="submit" value="add album">
+            </fieldset>
+        </form>
+    </section>
+    <section id="album">
+        <div class="card" th:each="album: ${albums}">
+            <img th:src="${album.imageUrl}" alt="Avatar" >
+            <div class="container">
+                <h4><b th:text="${album.title}" /></h4>
+                <p th:text="${album.artist}" />
+                <p th:text="${album.songCount}"/>
+                <p th:text="${album.length}"/>
+            </div>
+        </div>
 
-    </tr>
+    </section>
+
     </body>
     </html>
 </main>
