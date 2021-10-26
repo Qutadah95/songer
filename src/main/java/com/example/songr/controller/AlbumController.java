@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
 import java.util.ArrayList;
 
 @Controller
@@ -21,7 +25,15 @@ public String albums(Model model){
     album.add(album1);
     album.add(album2);
     album.add(album3);
+//    albumRepository.save(album1);
+//    albumRepository.saveAll(album);
 model.addAttribute("albums",albumRepository.findAll());
-    return "album.html";
+    return "album";
 }
+    @PostMapping("/addAlbum")
+    public RedirectView addAlbum(AlbumModel album, Model model) {
+        model.addAttribute("album",album);
+        albumRepository.save(album);
+        return new RedirectView("/albums");
+    }
 }
