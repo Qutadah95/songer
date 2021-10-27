@@ -2,10 +2,8 @@ package com.example.songr.model;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class AlbumModel {
@@ -18,12 +16,16 @@ public class AlbumModel {
     private int length ;
     private String imageUrl ;
 
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
     public AlbumModel(String title, String artist, int songCount, int length, String imageUrl) {
         this.title = title;
         this.artist = artist;
         this.songCount = songCount;
         this.length = length;
         this.imageUrl = imageUrl;
+
     }
 
     public AlbumModel() {
@@ -77,11 +79,21 @@ public class AlbumModel {
     public void setId(int id) {
         this.id = id;
     }
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+
 
     @Override
     public String toString() {
         return "AlbumModel{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", artist='" + artist + '\'' +
                 ", songCount=" + songCount +
                 ", length=" + length +
