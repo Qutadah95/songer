@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<main>
+    <section>
+        <form th:action="@{/addAlbum}" th:object="${album}" method="post">
+            <label>Add songs </label>
+            <fieldset id="fieldset">
+                <label>Title </label>
+                <input type="text" field="*{title}" name="title" />
+                <br><br>
+                <label>Artist </label>
+                <input type="text" field="*{artist}" name="artist" />
+                <br><br>
+                <label>trackNumber</label>
+                <input type="trackNumber" field="*{trackNumber}" name="trackNumber" />
+                <br><br>
+                <label>Length </label>
+                <input type="length" field="*{length}" name="length" />
+                <br><br>
+                <label>albumTitle </label>
+                <input type="albumTitle" field="*{albumTitle}" name="albumTitle" />
+                <br><br>
+                <input type="submit" value="add songs">
+            </fieldset>
+        </form>
+    </section>
+</main>
+</body>
+</html>
