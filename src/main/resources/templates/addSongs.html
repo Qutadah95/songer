@@ -6,31 +6,74 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        img {
+            border-radius: 8px;
+            width: 100%;
+            height: 500px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+            display: inline-block;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+        *{
+            background-color: wheat;
+            color: red;
+            font-family: Arial;
+            font-size: larger;
+            margin: 10px;
+            text-align: center;
+        }
+        #fieldset{
+            font-size: initial;
+            background: wheat;
+            text-align: left;
+        }
+        label{
+            background: wheat;
+        }
+    </style>
 </head>
 <body>
 <main>
     <section>
-        <form th:action="@{/addAlbum}" th:object="${album}" method="post">
+        <form action="/addSongs/addSong/" method="POST">
             <label>Add songs </label>
             <fieldset id="fieldset">
-                <label>Title </label>
-                <input type="text" field="*{title}" name="title" />
+                <label>Album Title:</label>
+                <input type="text" name="album" th:value="${album.getTitle()}"  required readonly>
                 <br><br>
-                <label>Artist </label>
-                <input type="text" field="*{artist}" name="artist" />
+                <label>Title:</label>
+                <input type="text" name="title"  required>
                 <br><br>
-                <label>trackNumber</label>
-                <input type="trackNumber" field="*{trackNumber}" name="trackNumber" />
+                <label>Length:</label>
+                <input type="number" name="length" required>
+                <br> <br>
+                <label>Track Number:</label>
+                <input type="number" name="trackNumber"  required>
                 <br><br>
-                <label>Length </label>
-                <input type="length" field="*{length}" name="length" />
-                <br><br>
-                <label>albumTitle </label>
-                <input type="albumTitle" field="*{albumTitle}" name="albumTitle" />
-                <br><br>
-                <input type="submit" value="add songs">
+                <input type="submit" value="add song" >
             </fieldset>
         </form>
+    </section>
+    <section>
+        <div th:each="song :${album.songs}">
+            <p>Song Title: <span th:text="${song.title}"></span></p>
+            <p>length <span th:text="${song.length}"></span></p>
+            <p> number tracker <span th:text="${song.trackNumber}"></span></p>
+        </div>
+
+
     </section>
 </main>
 </body>
