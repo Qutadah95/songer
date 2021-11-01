@@ -89,14 +89,13 @@
                 <p th:text="${album.artist}" />
                 <p th:text="${album.songCount}"/>
                 <p th:text="${album.length}"/>
-                <a href="showesSongs.html"/> show songs
-                <a th:href="${'/album/ '+album}">
+
+                <a th:href="${'/addSongs/ '+album}">add songs</a>
             </div>
         </div>
 
     </section>
 
-    </body>
     </html>
 </main>
 <footer>@copy: Qutadah Almomani  </footer>
